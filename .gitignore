@@ -15,5 +15,9 @@
 !exp-6/
 !exp-6/**
 
+# Allow experiment-9 (root level)
+!experiment-9/
+!experiment-9/**
+
 # Allow git files
 !.gitignore
