@@ -8,6 +8,12 @@
 !exp-2/**
 !exp-3/
 !exp-3/**
+!exp-4/
+!exp-4/**
+!exp5/
+!exp5/**
+!exp-6/
+!exp-6/**
 
 # Allow git files
 !.gitignore
