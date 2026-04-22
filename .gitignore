@@ -24,7 +24,9 @@ htmlcov/
 # -----------------------------
 # Node (Frontend)
 # -----------------------------
+# Node
 node_modules/
+**/node_modules/
 
 # -----------------------------
 # OS / System files

@@ -1,0 +1,37 @@
+name: CD Pipeline - Backend Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # 2. Setup Node
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # 3. Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # 4. Run tests (optional but recommended)
+      - name: Run Tests
+        run: npm test
+
+      # 5. Build Docker image
+      - name: Build Docker Image
+        run: docker build -t testing-backend .
+
+      # 6. Run container (for testing purpose)
+      - name: Run Docker Container
+        run: docker run -d -p 5000:5000 testing-backend
