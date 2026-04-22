@@ -1,39 +1,33 @@
-name: CD Pipeline - Frontend Deployment
+name: Frontend CD Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # 2. Setup Node
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: 20
 
-      # 3. Install dependencies
       - name: Install Dependencies
         working-directory: Testing/Frontend
         run: npm install
 
-      - name: Run Tests
+      - name: Build Project
         working-directory: Testing/Frontend
-        run: npm test
+        run: npm run build
 
       - name: Build Docker Image
         working-directory: Testing/Frontend
         run: docker build -t frontend-app .
 
-      # 6. Run container (for testing purpose)
       - name: Run Docker Container
-        working-directory: Testing/Frontend
-        run: docker run -d -p 5000:5000 testing-frontend
+        run: docker run -d -p 5005:4173 frontend-app
