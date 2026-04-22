@@ -1,4 +1,4 @@
-name: CD Pipeline - Backend Deployment
+name: CD Pipeline - Frontend Deployment
 
 on:
   push:
@@ -22,16 +22,18 @@ jobs:
 
       # 3. Install dependencies
       - name: Install Dependencies
+        working-directory: Testing/Frontend
         run: npm install
 
-      # 4. Run tests (optional but recommended)
       - name: Run Tests
+        working-directory: Testing/Frontend
         run: npm test
 
-      # 5. Build Docker image
       - name: Build Docker Image
-        run: docker build -t testing-backend .
+        working-directory: Testing/Frontend
+        run: docker build -t frontend-app .
 
       # 6. Run container (for testing purpose)
       - name: Run Docker Container
-        run: docker run -d -p 5000:5000 testing-backend
+        working-directory: Testing/Frontend
+        run: docker run -d -p 5000:5000 testing-frontend
